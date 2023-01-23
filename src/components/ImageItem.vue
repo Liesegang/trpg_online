@@ -1,6 +1,12 @@
 <script setup lang="ts">
-import { ref } from "vue";
-const position = ref({top: 0, left: 0});
+import { Ref, ref } from "vue";
+
+interface Position {
+  top: number;
+  left: number;
+}
+
+const position: Ref<Position> = ref({top: 0, left: 0});
 </script>
 
 <template>
