@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
+    "format": "prettier --write src/**/*.{ts,vue}"
   },
   "dependencies": {
     "core-js": "^3.8.3",
@@ -63,7 +64,7 @@
       ],
       "@typescript-eslint/no-explicit-any": "error"
     },
-    "ignorePatterns": ["vue.config.js"]
+    "ignorePatterns": ["vue.config.js", ".gitignore", "node_modules"]
   },
   "browserslist": [
     "> 1%",
