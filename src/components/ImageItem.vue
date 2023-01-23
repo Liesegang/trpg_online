@@ -6,11 +6,14 @@ interface Position {
   left: number;
 }
 
-const position: Ref<Position> = ref({top: 0, left: 0});
+const position: Ref<Position> = ref({ top: 0, left: 0 });
 </script>
 
 <template>
-  <img src="@/assets/logo.png" :style="{top: `${position.top}px`, left: `${position.left}px`}"/>
+  <img
+    src="@/assets/logo.png"
+    :style="{ top: `${position.top}px`, left: `${position.left}px` }"
+  />
 </template>
 
 <style scoped>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import MainCanvas from "./MainCanvas.vue"
+import MainCanvas from "./MainCanvas.vue";
 </script>
 
 <template>
