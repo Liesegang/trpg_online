@@ -41,7 +41,29 @@
     "parserOptions": {
       "parser": "@typescript-eslint/parser"
     },
-    "rules": {}
+    "rules": {
+      "vue/component-tags-order": [
+        "error",
+        {
+          "order": ["script", "template", "style"]
+        }
+      ],
+      "@typescript-eslint/typedef": [
+        "error",
+        {
+          "variableDeclaration": true,
+          "memberVariableDeclaration": true,
+          "propertyDeclaration": true,
+          "variableDeclarationIgnoreFunction": true,
+          "arrayDestructuring": true,
+          "objectDestructuring": true,
+          "parameter": true,
+          "arrowParameter": true
+        }
+      ],
+      "@typescript-eslint/no-explicit-any": "error"
+    },
+    "ignorePatterns": ["vue.config.js"]
   },
   "browserslist": [
     "> 1%",
