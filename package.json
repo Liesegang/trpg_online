@@ -85,7 +85,7 @@
     "not ie 11"
   ],
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,vue}": [
+    "*.{js,jsx,ts,tsx,vue}": [
       "prettier --write",
       "eslint --cache --fix --quiet"
     ]
