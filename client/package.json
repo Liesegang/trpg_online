@@ -58,19 +58,6 @@
           ]
         }
       ],
-      "@typescript-eslint/typedef": [
-        "error",
-        {
-          "variableDeclaration": true,
-          "memberVariableDeclaration": true,
-          "propertyDeclaration": true,
-          "variableDeclarationIgnoreFunction": true,
-          "arrayDestructuring": true,
-          "objectDestructuring": true,
-          "parameter": true,
-          "arrowParameter": true
-        }
-      ],
       "@typescript-eslint/no-explicit-any": "error"
     },
     "ignorePatterns": [
