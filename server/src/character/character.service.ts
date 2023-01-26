@@ -1,26 +1,34 @@
-import { Injectable } from '@nestjs/common';
+import { Model } from 'mongoose';
+import { Injectable, Inject } from '@nestjs/common';
 import { CreateCharacterDto } from './dto/create-character.dto';
 import { UpdateCharacterDto } from './dto/update-character.dto';
+import { Character } from './entities/character.entity';
 
 @Injectable()
 export class CharacterService {
+  constructor(
+    @Inject('CHARACTER_MODEL')
+    private characterModel: Model<Character>,
+  ) {}
+
   create(createCharacterDto: CreateCharacterDto) {
-    return 'This action adds a new character';
+    const createdCharacter = new this.characterModel(createCharacterDto);
+    return createdCharacter.save();
   }
 
   findAll() {
-    return `This action returns all character`;
+    return this.characterModel.find().exec();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} character`;
+    return this.characterModel.findOne({ id }).exec();
   }
 
   update(id: number, updateCharacterDto: UpdateCharacterDto) {
-    return `This action updates a #${id} character`;
+    return this.characterModel.updateOne({ id }, updateCharacterDto).exec();
   }
 
   remove(id: number) {
-    return `This action removes a #${id} character`;
+    return this.characterModel.findOneAndRemove({ id }).exec();
   }
 }
