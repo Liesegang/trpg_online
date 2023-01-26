@@ -5,6 +5,10 @@ const props = defineProps({
   zoom: {
     type: Number,
     default: 1,
+  },
+  name: {
+    type: String,
+    required: true
   }
 });
 
@@ -55,11 +59,14 @@ function handleDoDrag(e: MouseEvent) {
 </script>
 
 <template>
-  <img
+  <div>
+    {{ name }}
+    <img
     src="@/assets/logo.png"
     :style="{ top: `${position.top}px`, left: `${position.left}px` }"
     @mousedown="handleStartDrag"
   />
+  </div>
 </template>
 
 <style scoped>
