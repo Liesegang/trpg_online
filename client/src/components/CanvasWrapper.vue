@@ -1,11 +1,19 @@
 <script setup lang="ts">
 import MainCanvas from "./MainCanvas.vue";
+import { VueInfiniteViewer } from "vue3-infinite-viewer";
 </script>
 
 <template>
-  <div id="canvas-wrapper">
+  <vue-infinite-viewer
+    id="canvas-wrapper"
+    class="viewer"
+    :useMouseDrag="true"
+    :useAutoZoom="true"
+    :zoomRange="[0.1, 10]"
+    :maxPinchWheel="10"
+  >
     <MainCanvas />
-  </div>
+  </vue-infinite-viewer>
 </template>
 
 <style scoped>
@@ -15,7 +23,7 @@ import MainCanvas from "./MainCanvas.vue";
   bottom: 0;
   left: 0;
   right: 0;
-  background: darkslategray;
+  background: #1d1d1d;
   overflow: hidden;
 }
 </style>

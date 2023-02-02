@@ -1,76 +1,59 @@
 <script setup lang="ts">
-import { defineProps, onMounted, Ref, ref } from "vue";
+import { defineProps, Ref, ref } from "vue";
+// eslint-disable-next-line no-unused-vars
+import Moveable, { OnDrag, OnRotate, OnScale } from "vue3-moveable";
 
+// eslint-disable-next-line no-unused-vars
 const props = defineProps({
-  zoom: {
-    type: Number,
-    default: 1,
-  },
   name: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
-interface Position {
-  top: number;
-  left: number;
+const target: Ref<HTMLElement | undefined> = ref(undefined);
+
+function onDrag(e: OnDrag) {
+  e.target.style.transform = e.transform;
 }
 
-const position: Ref<Position> = ref({ top: 0, left: 0 });
-const prevX: Ref<number> = ref(0);
-const prevY: Ref<number> = ref(0);
-const isDragging: Ref<boolean> = ref(false);
-
-onMounted(() => {
-  document.addEventListener("pointermove", handleDoDrag.bind(this));
-  document.addEventListener("mouseup", handleStopDrag.bind(this));
-});
-
-const handleStartDrag = (e: MouseEvent) => {
-  document.body.style.userSelect = 'none';
-  isDragging.value = true;
-  prevY.value = e.clientY;
-  prevX.value = e.clientX;
-  e.stopPropagation();
-  e.preventDefault();
+function onScale(e: OnScale) {
+  e.target.style.transform = e.drag.transform;
 }
 
-function handleStopDrag(e: MouseEvent) {
-  document.body.style.userSelect = 'auto';
-  isDragging.value = false;
-  e.stopPropagation();
-  e.preventDefault();
-}
-
-function handleDoDrag(e: MouseEvent) {
-  if (!isDragging.value) {
-    return;
-  }
-  const diffY: number = e.clientY - prevY.value;
-  const diffX: number = e.clientX - prevX.value;
-  prevY.value = e.clientY;
-  prevX.value = e.clientX;
-  position.value.top += diffY / props.zoom;
-  position.value.left += diffX / props.zoom;
-  e.stopPropagation();
-  e.preventDefault();
+function onRotate(e: OnRotate) {
+  e.target.style.transform = e.drag.transform;
 }
 </script>
 
 <template>
-  <div>
-    {{ name }}
-    <img
-    src="@/assets/logo.png"
-    :style="{ top: `${position.top}px`, left: `${position.left}px` }"
-    @mousedown="handleStartDrag"
-  />
+  <div class="container">
+    <div class="image-wrapper" ref="target">
+      <img src="@/assets/logo.png"/>
+    </div>
+    <Moveable
+      className="moveable"
+      :target="target"
+      @drag="onDrag"
+      @scale="onScale"
+      @rotate="onRotate"
+      :draggable="true"
+      :scalable="true"
+      :rotatable="true"
+      :stopPropagation="true"
+    />
   </div>
 </template>
 
 <style scoped>
-img {
+.image-wrapper {
+  display: inline-block;
   position: absolute;
+  left: 0;
+  top: 0;
+}
+
+img {
+  display: block;
 }
 </style>
