@@ -12,13 +12,19 @@ const canvas: Ref<HTMLElement | undefined> = ref(undefined);
 const characters: Ref<Character[]> = ref([]);
 
 onMounted(async () => {
-  characters.value = (await axios.get<Character[]>("http://localhost:3000/character")).data
+  characters.value = (
+    await axios.get<Character[]>("http://localhost:3000/character")
+  ).data;
 });
 </script>
 
 <template>
   <div id="main-canvas" ref="canvas" class="viewport">
-    <ImageItem v-for="character in characters" :key="character.id" :name="character.name"/>
+    <ImageItem
+      v-for="character in characters"
+      :key="character.id"
+      :name="character.name"
+    />
     <div>不動点</div>
   </div>
 </template>

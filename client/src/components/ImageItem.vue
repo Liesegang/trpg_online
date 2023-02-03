@@ -29,7 +29,7 @@ function onRotate(e: OnRotate) {
 <template>
   <div class="container">
     <div class="image-wrapper" ref="target">
-      <img src="@/assets/logo.png"/>
+      <img src="@/assets/logo.png" />
     </div>
     <Moveable
       className="moveable"

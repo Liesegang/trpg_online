@@ -1,1 +1,1 @@
-declare module 'vue-movable';
+declare module "vue-movable";
