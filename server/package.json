@@ -25,11 +25,15 @@
     "@nestjs/mapped-types": "^1.2.0",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/platform-socket.io": "^9.2.1",
+    "@nestjs/platform-ws": "^9.3.2",
     "@nestjs/websockets": "^9.2.1",
+    "@teamwork/websocket-json-stream": "^2.0.0",
+    "@types/cookie-parser": "^1.4.3",
     "mongoose": "^6.8.4",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
-    "sharedb": "^3.2.1"
+    "y-protocols": "^1.0.5",
+    "y-websocket": "^1.4.5"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",

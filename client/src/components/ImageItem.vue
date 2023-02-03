@@ -1,12 +1,14 @@
+<!-- eslint-disable vue/no-mutating-props -->
 <script setup lang="ts">
-import { defineProps, Ref, ref } from "vue";
+import { Character } from "@/types";
+import { defineProps, PropType, Ref, ref } from "vue";
 // eslint-disable-next-line no-unused-vars
 import Moveable, { OnDrag, OnRotate, OnScale } from "vue3-moveable";
 
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
-  name: {
-    type: String,
+  character: {
+    type: Object as PropType<Character>,
     required: true,
   },
 });
@@ -14,21 +16,21 @@ const props = defineProps({
 const target: Ref<HTMLElement | undefined> = ref(undefined);
 
 function onDrag(e: OnDrag) {
-  e.target.style.transform = e.transform;
+  props.character.transform = e.transform;
 }
 
 function onScale(e: OnScale) {
-  e.target.style.transform = e.drag.transform;
+  props.character.transform = e.drag.transform;
 }
 
 function onRotate(e: OnRotate) {
-  e.target.style.transform = e.drag.transform;
+  props.character.transform = e.drag.transform;
 }
 </script>
 
 <template>
   <div class="container">
-    <div class="image-wrapper" ref="target">
+    <div class="image-wrapper" ref="target" :style="{transform: props.character.transform}">
       <img src="@/assets/logo.png" />
     </div>
     <Moveable

@@ -4,9 +4,10 @@ import { AppService } from './app.service';
 import { CharacterModule } from './character/character.module';
 import { CorsMiddleware } from './cors.middleware';
 import { DatabaseModule } from './database/database.module';
+import { EventsModule } from './event.nodule';
 
 @Module({
-  imports: [CharacterModule, DatabaseModule],
+  imports: [CharacterModule, DatabaseModule, EventsModule],
   controllers: [AppController],
   providers: [AppService],
 })
