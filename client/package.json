@@ -9,6 +9,7 @@
     "format": "prettier --write src/**/*.{ts,vue}"
   },
   "dependencies": {
+    "@imengyu/vue3-context-menu": "^1.2.2",
     "@syncedstore/core": "^0.4.3",
     "axios": "^1.2.4",
     "core-js": "^3.8.3",

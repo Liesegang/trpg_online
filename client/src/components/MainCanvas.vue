@@ -6,14 +6,13 @@ import Moveable, {
   OnDrag,
   OnRotate,
   OnScale,
-  VueMoveableInstance,
 } from "vue3-moveable";
 import { v4 as uuidv4 } from "uuid";
 import { observeDeep } from "@syncedstore/core";
 
 const canvas: Ref<HTMLElement | undefined> = ref(undefined);
-const selected: Ref<HTMLElement | null> = ref(null);
-const moveable: Ref<VueMoveableInstance> = ref();
+const selected: Ref<HTMLElement | undefined> = ref(undefined);
+const moveable: Ref<typeof Moveable | undefined> = ref(undefined);
 
 function addCharacter() {
   const id: string = uuidv4();
@@ -43,8 +42,8 @@ function onRotate(e: OnRotate) {
 }
 
 observeDeep(store.characters, () => {
-  if (store)
-  moveable.value.updateRect();
+  if(moveable.value != undefined)
+    moveable.value.updateRect();
 });
 </script>
 
@@ -54,10 +53,10 @@ observeDeep(store.characters, () => {
     <template v-for="(character, i) in store.characters" :key="i">
       <CharacterItem
         v-model:character="store.characters[i]"
-        @selected="(elem: HTMLElement) => selected = elem"
+        @selected="(elem: HTMLElement | undefined) => selected = elem"
+        @delete="(id: string) => delete store.characters[id]"
       />
     </template>
-    />
     <div>不動点</div>
     <Moveable
       className="moveable"
