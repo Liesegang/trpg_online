@@ -5,7 +5,10 @@ import { Map } from "yjs";
 import { Character } from "./types";
 
 // Create your SyncedStore store
-export const store = syncedStore({ characters: {} as Map<Character>, fragment: "xml" });
+export const store = syncedStore({
+  characters: {} as Map<Character>,
+  fragment: "xml",
+});
 
 // Create a document that syncs automatically using Y-WebRTC
 const doc = getYjsDoc(store);

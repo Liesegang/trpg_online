@@ -2,11 +2,6 @@
 <script setup lang="ts">
 import { Character } from "@/types";
 import { defineProps, defineEmits, PropType, Ref, ref } from "vue";
-// import { defineProps, defineEmits, PropType, Ref, ref, watch, toRefs, inject } from "vue";
-// import { MoveableInstance } from "vue3-moveable";
-
-
-// const moveable = inject('_moveable') as MoveableInstance
 
 const props = defineProps({
   character: {
@@ -15,15 +10,9 @@ const props = defineProps({
   },
 });
 // eslint-disable-next-line no-unused-vars
-const emits = defineEmits<{(event: string, data: unknown): void;}>()
+const emits = defineEmits<{ (event: string, data: unknown): void }>();
 
 const target: Ref<HTMLElement | undefined> = ref(undefined);
-
-// watch(toRefs(props).character, () => {
-//   moveable.updateRect();
-// }, {
-//   deep: true
-// });
 </script>
 
 <template>
