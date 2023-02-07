@@ -14,10 +14,10 @@ const props = defineProps({
 
 const emits = defineEmits<{
   // eslint-disable-next-line no-unused-vars
-  (e: "selected", elem: HTMLElement | undefined): void
+  (e: "selected", elem: HTMLElement | undefined): void;
   // eslint-disable-next-line no-unused-vars
-  (e: "delete", id: string): void
-}>()
+  (e: "delete", id: string): void;
+}>();
 
 const target: Ref<HTMLElement | undefined> = ref(undefined);
 const isEditing: Ref<boolean> = ref(false);
@@ -57,6 +57,7 @@ function onContextMenu(e: MouseEvent) {
       :data-id="character.id"
     >
       <img src="@/assets/logo.png" />
+      <div>{{ character.name }}</div>
     </div>
   </div>
 </template>

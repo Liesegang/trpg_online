@@ -21,23 +21,23 @@ function addCharacter() {
 }
 
 function onDrag(e: OnDrag) {
-  const key = e.target.getAttribute("data-id");
-  if (key) {
-    store.characters[key].transform = e.transform;
+  const id = e.target.getAttribute("data-id");
+  if (id) {
+    store.characters[id].transform = e.transform;
   }
 }
 
 function onScale(e: OnScale) {
-  const key = e.target.getAttribute("data-id");
-  if (key) {
-    store.characters[key].transform = e.drag.transform;
+  const id = e.target.getAttribute("data-id");
+  if (id) {
+    store.characters[id].transform = e.drag.transform;
   }
 }
 
 function onRotate(e: OnRotate) {
-  const key = e.target.getAttribute("data-id");
-  if (key) {
-    store.characters[key].transform = e.drag.transform;
+  const id = e.target.getAttribute("data-id");
+  if (id) {
+    store.characters[id].transform = e.drag.transform;
   }
 }
 
