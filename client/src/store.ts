@@ -1,5 +1,6 @@
 import { syncedStore, getYjsDoc } from "@syncedstore/core";
 import { WebrtcProvider } from "y-webrtc";
+import { WebsocketProvider } from "y-websocket";
 import { Map } from "yjs";
 
 import { Character } from "./types";
@@ -12,7 +13,7 @@ export const store = syncedStore({
 
 // Create a document that syncs automatically using Y-WebRTC
 const doc = getYjsDoc(store);
-export const webrtcProvider = new WebrtcProvider("syncedstore-todos", doc);
+export const webrtcProvider = new WebsocketProvider("ws://localhost:3000/sync", "roomId", doc);
 
 export const disconnect = () => webrtcProvider.disconnect();
 export const connect = () => webrtcProvider.connect();
