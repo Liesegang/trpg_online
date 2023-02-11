@@ -2,11 +2,7 @@
 import CharacterItem from "@/components/CharacterItem.vue";
 import { ref, Ref } from "vue";
 import { store } from "@/store";
-import Moveable, {
-  OnDrag,
-  OnRotate,
-  OnScale,
-} from "vue3-moveable";
+import Moveable, { OnDrag, OnRotate, OnScale } from "vue3-moveable";
 import { v4 as uuidv4 } from "uuid";
 import { observeDeep } from "@syncedstore/core";
 
@@ -42,8 +38,7 @@ function onRotate(e: OnRotate) {
 }
 
 observeDeep(store.characters, () => {
-  if(moveable.value != undefined)
-    moveable.value.updateRect();
+  if (moveable.value != undefined) moveable.value.updateRect();
 });
 </script>
 

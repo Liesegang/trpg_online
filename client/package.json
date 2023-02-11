@@ -9,6 +9,7 @@
     "format": "prettier --write src/**/*.{ts,vue}"
   },
   "dependencies": {
+    "@dsb-norge/vue-keycloak-js": "^2.2.0",
     "@imengyu/vue3-context-menu": "^1.2.2",
     "@syncedstore/core": "^0.4.3",
     "axios": "^1.2.4",
