@@ -9,7 +9,7 @@ import { Request } from 'express';
 import { Server } from 'ws';
 import { setupWSConnection } from 'y-websocket/bin/utils';
 
-@WebSocketGateway({ path: '/sync/:roomId(*)' })
+@WebSocketGateway({ path: '/sync/roomId' })
 export class YjsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   constructor() {}
 
