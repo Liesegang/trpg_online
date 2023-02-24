@@ -13,7 +13,12 @@ const moveable: Ref<typeof Moveable | undefined> = ref(undefined);
 function addCharacter() {
   const id: string = uuidv4();
   if (store.characters)
-    store.characters[id] = { name: "hoge", id, transform: "" };
+    store.characters[id] = {
+      name: "hoge",
+      id,
+      transform: "",
+      url: "/logo.png",
+    };
 }
 
 function onDrag(e: OnDrag) {

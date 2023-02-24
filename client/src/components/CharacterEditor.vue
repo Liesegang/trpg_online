@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { Character } from "@/types";
+import { defineProps, PropType } from "vue";
 
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
@@ -8,6 +9,10 @@ const props = defineProps({
     required: true,
     default: false,
   },
+  character: {
+    type: Object as PropType<Character>,
+      required: true,
+  }
 });
 </script>
 

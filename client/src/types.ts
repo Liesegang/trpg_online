@@ -19,4 +19,5 @@ export interface Character {
   parameter: Parameter[];
   status: Status[];
   skill: Skill[];
+  url: string;
 }

@@ -12,6 +12,7 @@ import { CharacterModule } from './character/character.module';
 import { CorsMiddleware } from './cors.middleware';
 import { DatabaseModule } from './database/database.module';
 import { EventsModule } from './event.nodule';
+import { ImagesModule } from './images/images.module';
 
 @Module({
   imports: [
@@ -19,11 +20,12 @@ import { EventsModule } from './event.nodule';
       authServerUrl: 'http://localhost:8080/',
       realm: 'myrealm',
       clientId: 'nestjs',
-      secret: 'lmcpZnpDaO1o8LlN2OFojgZgGv4iipB4',
+      secret: 'fFTiC3YXJClwBxO1x13RTlzJ0waLuIG0',
     }),
     CharacterModule,
     DatabaseModule,
     EventsModule,
+    ImagesModule,
   ],
   controllers: [AppController],
   providers: [

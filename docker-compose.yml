@@ -5,8 +5,8 @@ services:
     image: quay.io/minio/minio:latest
     restart: always
     environment:
-      MINIO_ROOT_USER: admin
-      MINIO_ROOT_PASSWORD: admin
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
     command: server --console-address ":9001" /data
     ports:
       - 9000:9000
@@ -20,10 +20,15 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
 
   keycloak:
-    image: quay.io/keycloak/keycloak:legacy
+    image: quay.io/keycloak/keycloak:latest
     restart: always
+    command: start-dev
+    tty: true
+    stdin_open: true
     ports:
-        - "8080:8080"
+      - "8080:8080"
+    volumes:
+    - ./data/keycloak:/opt/keycloak/data
     environment:
-        - KEYCLOAK_USER=admin
-        - KEYCLOAK_PASSWORD=admin
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin

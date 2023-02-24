@@ -1,9 +1,14 @@
 <!-- eslint-disable vue/no-mutating-props -->
 <script setup lang="ts">
 import { Character } from "@/types";
-import { defineProps, defineEmits, PropType, Ref, ref } from "vue";
+import { defineProps, defineEmits, PropType, Ref, ref, inject } from "vue";
 import ContextMenu from "@imengyu/vue3-context-menu";
 import CharacterEditor from "@/components/CharacterEditor.vue";
+import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
+import { store } from "@/store";
+import { VueKeycloakInstance } from "@dsb-norge/vue-keycloak-js/dist/types";
+import KeyCloak from "@dsb-norge/vue-keycloak-js";
 
 const props = defineProps({
   character: {
@@ -21,6 +26,8 @@ const emits = defineEmits<{
 
 const target: Ref<HTMLElement | undefined> = ref(undefined);
 const isEditing: Ref<boolean> = ref(false);
+
+const keycloak: VueKeycloakInstance = inject(KeyCloak.KeycloakSymbol)!;
 
 function onContextMenu(e: MouseEvent) {
   ContextMenu.showContextMenu({
@@ -44,19 +51,45 @@ function onContextMenu(e: MouseEvent) {
     ],
   });
 }
+
+async function dropFile(event: DragEvent) {
+  if (!event.dataTransfer)
+    return;
+
+  if (event.dataTransfer.files.length === 0)
+    return
+
+  let fileData = new FormData();
+  fileData.append('file', event.dataTransfer.files[0]);
+  const res = await axios.post<string>('http://localhost:3000/images', fileData, {
+    headers: {
+      'content-type': 'multipart/form-data',
+      'Authorization': `Bearer ${keycloak.token}`
+    }
+  });
+
+  const id: string = uuidv4();
+  store.characters[id] = { name: "hoge", id, transform: "", url: `http://localhost:9000/trpg/${res.data}` };
+}
 </script>
 
 <template>
-  <CharacterEditor v-model="isEditing"/>
-  <div class="container" @click.right.prevent="onContextMenu">
+  <CharacterEditor v-model="isEditing" />
+  <div
+    class="container"
+    @click.right.prevent="onContextMenu"
+  >
     <div
       class="image-wrapper"
       ref="target"
       :style="{ transform: character.transform }"
       @click="emits('selected', target)"
+      @drop.prevent="dropFile"
+      @dragover.prevent
+      @dragenter.prevent
       :data-id="character.id"
     >
-      <img src="@/assets/logo.png" />
+      <img :src="character.url || '/logo.png'" />
       <div>{{ character.name }}</div>
     </div>
   </div>
