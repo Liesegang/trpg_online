@@ -5,4 +5,4 @@ declare module "*.vue" {
   export default component;
 }
 
-declare module 's3-vuetify-file-browser';
+declare module "s3-vuetify-file-browser";

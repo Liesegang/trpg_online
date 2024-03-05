@@ -53,32 +53,36 @@ function onContextMenu(e: MouseEvent) {
 }
 
 async function dropFile(event: DragEvent) {
-  if (!event.dataTransfer)
-    return;
+  if (!event.dataTransfer) return;
 
-  if (event.dataTransfer.files.length === 0)
-    return
+  if (event.dataTransfer.files.length === 0) return;
 
   let fileData = new FormData();
-  fileData.append('file', event.dataTransfer.files[0]);
-  const res = await axios.post<string>('http://localhost:3000/images', fileData, {
-    headers: {
-      'content-type': 'multipart/form-data',
-      'Authorization': `Bearer ${keycloak.token}`
+  fileData.append("file", event.dataTransfer.files[0]);
+  const res = await axios.post<string>(
+    "http://localhost:3000/images",
+    fileData,
+    {
+      headers: {
+        "content-type": "multipart/form-data",
+        Authorization: `Bearer ${keycloak.token}`,
+      },
     }
-  });
+  );
 
   const id: string = uuidv4();
-  store.characters[id] = { name: "hoge", id, transform: "", url: `http://localhost:9000/trpg/${res.data}` };
+  store.characters[id] = {
+    name: "hoge",
+    id,
+    transform: "",
+    url: `http://localhost:9000/trpg/${res.data}`,
+  };
 }
 </script>
 
 <template>
   <CharacterEditor v-model="isEditing" />
-  <div
-    class="container"
-    @click.right.prevent="onContextMenu"
-  >
+  <div class="container" @click.right.prevent="onContextMenu">
     <div
       class="image-wrapper"
       ref="target"

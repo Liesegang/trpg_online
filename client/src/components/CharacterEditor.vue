@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { Character } from "@/types";
-import { defineProps, PropType } from "vue";
+import { defineProps } from "vue";
 
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
@@ -9,10 +8,6 @@ const props = defineProps({
     required: true,
     default: false,
   },
-  character: {
-    type: Object as PropType<Character>,
-      required: true,
-  }
 });
 </script>
 
@@ -29,8 +24,7 @@ const props = defineProps({
         </v-card-title>
         <v-card-text>
           <v-container>
-            <v-row>
-            </v-row>
+            <v-row> </v-row>
           </v-container>
         </v-card-text>
         <v-card-actions>

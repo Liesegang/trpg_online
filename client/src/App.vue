@@ -24,7 +24,12 @@ const keycloak: VueKeycloakInstance = inject(KeyCloak.KeycloakSymbol)!;
 
       <template v-slot:append>
         <div class="pa-2">
-          <v-btn block @click="keycloak.logoutFn" color="primary" prepend-icon="mdi-logout">
+          <v-btn
+            block
+            @click="keycloak.logoutFn"
+            color="primary"
+            prepend-icon="mdi-logout"
+          >
             Logout
           </v-btn>
         </div>

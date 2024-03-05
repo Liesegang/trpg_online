@@ -12,7 +12,7 @@ import * as directives from "vuetify/directives";
 import "@imengyu/vue3-context-menu/lib/vue3-context-menu.css";
 import ContextMenu from "@imengyu/vue3-context-menu";
 import VueKeyCloak from "@dsb-norge/vue-keycloak-js";
-import Keycloak from 'keycloak-js';
+import Keycloak from "keycloak-js";
 
 enableVueBindings(Vue);
 
